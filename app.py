@@ -35,6 +35,7 @@ def main():
     record = flask.request.args.get('record')
     ipv4 = flask.request.args.get('ipv4')
     ipv6 = flask.request.args.get('ipv6')
+    ip_subdomains = flask.request.args.get('ip_subdomains')
     cf = CloudFlare.CloudFlare(token=token)
 
     if not token:
@@ -53,6 +54,10 @@ def main():
         zone_id = zones[0]['id']
 
         dns_record_set(cf, zone_id, record, zone, ipv4, ipv6)
+
+        if ip_subdomains:
+            dns_record_set(cf, zone_id, 'v4.{}'.format(record), zone, ipv4, None)
+            dns_record_set(cf, zone_id, 'v6.{}'.format(record), zone, None, ipv6)
 
     except CloudFlare.exceptions.CloudFlareAPIError as e:
         return flask.jsonify({'status': 'error', 'message': str(e)}), 500
