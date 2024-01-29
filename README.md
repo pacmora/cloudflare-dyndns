@@ -28,14 +28,6 @@ Use the [Helm Chart](./helm-chart) to deploy cloudflare-dyndns to Kubernetes or 
 helm pull oci://ghcr.io/l480/charts/cloudflare-dyndns --version 0.1.0
 ```
 
-### :cloud: Option 2: Use my free cloud service
-
-If you don't want to host cloudflare-dyndns yourself, feel free to use my cloud service. Just use this Update URL in your FRITZ!Box:
-
-```
-https://dyndns.nicoo.org/?token=<pass>&record=www&zone=example.com&ipv4=<ipaddr>&ipv6=<ip6addr>
-```
-
 ### Configure your FRITZ!Box
 
 | FRITZ!Box Setting | Value                                                                                                   | Description                                                                                                                          |
